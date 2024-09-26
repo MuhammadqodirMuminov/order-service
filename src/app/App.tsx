@@ -1,6 +1,8 @@
 import { createTheme, ThemeProvider } from '@mui/material';
-import './index.css';
-import { StyledButton } from './styled';
+import '../index.css';
+import { history } from '../lib/utils';
+import { Router } from '../router';
+import { HistoryProvider } from './providers';
 
 const theme = createTheme({
 	components: {
@@ -19,12 +21,12 @@ const theme = createTheme({
 	},
 });
 
-const App = () => {
+export const App = () => {
 	return (
 		<ThemeProvider theme={theme}>
-			<StyledButton variant='contained'>App</StyledButton>
+			<HistoryProvider history={history}>
+				<Router />
+			</HistoryProvider>
 		</ThemeProvider>
 	);
 };
-
-export default App;
