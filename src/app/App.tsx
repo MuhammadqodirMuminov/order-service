@@ -1,29 +1,10 @@
-import { createTheme, ThemeProvider } from '@mui/material';
-import '../index.css';
 import { history } from '../lib/utils';
 import { Router } from '../router';
-import { HistoryProvider } from './providers';
-
-const theme = createTheme({
-	components: {
-		MuiButton: {
-			variants: [
-				{
-					style: {
-						backgroundColor: 'red',
-					},
-					props: {
-						variant: 'contained',
-					},
-				},
-			],
-		},
-	},
-});
+import { HistoryProvider, ThemeProvider } from './providers';
 
 export const App = () => {
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider>
 			<HistoryProvider history={history}>
 				<Router />
 			</HistoryProvider>

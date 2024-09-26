@@ -9,8 +9,6 @@ type Props = {
 export const HistoryProvider = ({ history, ...props }: Props) => {
 	const [routes, setRoutes] = useState({ action: history.action, location: history.location });
 
-	console.log(routes);
-
 	useLayoutEffect(
 		() =>
 			history.listen(update => {
