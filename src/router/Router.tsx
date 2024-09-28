@@ -5,7 +5,7 @@ import { Protected } from './Protected';
 import { Public } from './Public';
 
 export const Router = () => {
-	const isAuth = true;
+	const isAuth = false;
 	return useRoutes([
 		{
 			element: <Protected isAuth={isAuth} />,
