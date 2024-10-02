@@ -4,10 +4,9 @@ export type TInitialState = {
 	page: number | null;
 	search: string | null;
 	theme: ETheme;
-	lang: string | any;
+	lang: string;
 	path: string;
 	menu: IMenu[];
-	previewOpen: boolean;
 };
 
 export enum ETheme {

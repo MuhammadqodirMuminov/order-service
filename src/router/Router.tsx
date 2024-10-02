@@ -1,11 +1,13 @@
 import { ROUTES } from '@/constants';
+import { useBootstrap } from '@/lib/hooks/useBootstrap';
 import { useRoutes } from 'react-router-dom';
 import { Dashboard, Login } from './Loadible';
 import { Protected } from './Protected';
 import { Public } from './Public';
 
 export const Router = () => {
-	const isAuth = false;
+	const { isAuth } = useBootstrap();
+
 	return useRoutes([
 		{
 			element: <Protected isAuth={isAuth} />,

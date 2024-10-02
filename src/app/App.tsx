@@ -1,17 +1,20 @@
-import { store } from '@/store/store';
-import { Provider } from 'react-redux';
+import { Loading } from '@/components';
+import { useBootstrap } from '@/lib/hooks/useBootstrap';
 import { history } from '@/lib/utils';
 import { Router } from '@/router';
 import { HistoryProvider, ThemeProvider } from './providers';
 
 export const App = () => {
+	const { isInitiated } = useBootstrap();
+
+	if (isInitiated) {
+		return <Loading />;
+	}
 	return (
-		<Provider store={store}>
-			<ThemeProvider>
-				<HistoryProvider history={history}>
-					<Router />
-				</HistoryProvider>
-			</ThemeProvider>
-		</Provider>
+		<ThemeProvider>
+			<HistoryProvider history={history}>
+				<Router />
+			</HistoryProvider>
+		</ThemeProvider>
 	);
 };

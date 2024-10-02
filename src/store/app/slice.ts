@@ -1,7 +1,8 @@
+import { LANG } from '@/constants';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils';
-import { ETheme, TInitialState } from './types';
 import { createSlice } from '@reduxjs/toolkit';
 import { ENDPOINTS } from '../endpoints';
+import { ETheme, TInitialState } from './types';
 
 const initialState: TInitialState = {
 	isModal: false,
@@ -10,12 +11,9 @@ const initialState: TInitialState = {
 	search: null,
 	path: '',
 	menu: [],
-	previewOpen: false,
 	theme: ETheme.LIGHT,
 	lang: getLocalStorage('lang') ?? 'en',
 };
-
-
 
 const appSlice = createSlice({
 	name: ENDPOINTS.app,
@@ -26,46 +24,8 @@ const appSlice = createSlice({
 			state.lang = payload;
 		},
 
-		setPreviewOpen: (state, { payload }) => {
-			state.previewOpen = payload;
-		},
-
-		setFilesList: (state, { payload }) => {
-			state.fileList = payload;
-		},
-		setImageIds: (state, { payload }) => {
-			state.imageIds = payload;
-		},
-
-		setAppStartDate: (state, { payload }) => {
-			state.startDate = payload;
-		},
-		setAppEndDate: (state, { payload }) => {
-			state.endDate = payload;
-		},
-
-		setThemeUi: (state, { payload }) => {
-			setLocalStorage(THEMEUI, payload);
-			state.themeUi = payload;
-		},
-
 		setModal: (state, { payload }) => {
-			if (payload.type === 'get') {
-				state.isModal.get = payload.data;
-			} else if (payload.type === 'post') {
-				state.isModal.post = payload.data;
-			} else if (payload.type === 'put') {
-				state.isModal.put = payload.data;
-			} else if (payload.type === 'map') {
-				state.isModal.map = payload.data;
-			} else {
-				state.isModal.delete = payload.data;
-			}
-		},
-
-		setTheme: (state, { payload }) => {
-			setLocalStorage(THEME, payload);
-			state.theme = payload;
+			state.isModal = payload;
 		},
 
 		setMenu: (state, { payload }) => {
@@ -83,21 +43,8 @@ const appSlice = createSlice({
 		setSearch: (state, { payload }) => {
 			state.search = payload;
 		},
-
-		setPreviewImage: (state, { payload }) => {
-			state.previewImage = payload;
-		},
-		setPreviewTitle: (state, { payload }) => {
-			state.previewTitle = payload;
-		},
-		setProdcutDrower: (state, { payload }) => {
-			state.isModal.product_drower = payload;
-		},
-		setBrandDrower: (state, { payload }) => {
-			state.isModal.brand_drower = payload;
-		},
 	},
 });
 
-export const appActions = appSlice.actions;
-export const appReducer = appSlice.reducer;
+export const AppActions = appSlice.actions;
+export const AppReducer = appSlice.reducer;
