@@ -1,3 +1,15 @@
+import { useGetProductsQuery } from '@/store/products/features';
+
 export const Login = () => {
-	return <div>Login</div>;
+	const { data, isFetching } = useGetProductsQuery();
+
+	if (isFetching) return <div>Loading...</div>
+
+	return (
+		<div>
+			{data?.products.map(p => (
+				<h2>{p.title}</h2>
+			))}
+		</div>
+	);
 };

@@ -1,5 +1,5 @@
 import { TOKENS, USER } from '@/constants';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useActions } from '.';
 import { getLocalStorage } from '../utils';
 import { useSelector } from './useSelector';
@@ -12,7 +12,7 @@ export function useBootstrap() {
 	const user = getLocalStorage(USER);
 	const accessToken = getLocalStorage(TOKENS.accessToken);
 
-	const setApp = () => {
+	const setApp = useCallback(() => {
 		if (accessToken) {
 			setUser(user);
 			setAuth(true);
@@ -22,7 +22,7 @@ export function useBootstrap() {
 			setIsInitiated(false);
 			logout();
 		}
-	};
+	}, [accessToken, setUser, setAuth, setToken, logout, user]);
 
 	useEffect(() => {
 		const appConfig = () => {
@@ -35,7 +35,7 @@ export function useBootstrap() {
 		};
 
 		appConfig();
-	}, []);
+	}, [setApp]);
 
 	return { isAuth, isInitiated };
 }
